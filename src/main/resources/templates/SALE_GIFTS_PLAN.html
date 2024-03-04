@@ -1,0 +1,39 @@
+{% extends '0_base.html' %}
+
+{% block mensaje %}
+    {% include '2_mensajeGracias.html' %} 
+{% endblock %}
+
+{% block datosEvento %}
+    {% include '2_infoMesaRegalos.html' %} 
+{% endblock %}
+
+{% block labelTipoTicket %}
+    {% for label in labels["LABEL_TYPE"] %}
+        {% include '2_tab.html' %} 
+    {% endfor %}
+{% endblock %}
+
+{% block labelTipoProducto %} 
+    {% for label in labels["LABEL_PRODUCT"] %}
+        {% include '2_tab.html' %} 
+    {% endfor %}
+{% endblock %}
+
+<!--{% block warnings %}
+    {% for warnings in labels["WARNINGS"]["val1"] %}
+        {% include '3_warning.html' %} 
+    {% endfor %} 
+{% endblock %}-->
+
+{% block producto %}
+    {% include '2_productosImagen.html' %} 
+{% endblock %}
+
+{% block factura %}
+    {% include '1_facturaProducto.html' %} 
+{% endblock %}
+
+{% block resumenBolsa %}
+    {% include '2_resumenBolsa.html' %}
+{% endblock %}

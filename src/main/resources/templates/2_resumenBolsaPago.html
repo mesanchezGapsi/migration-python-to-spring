@@ -1,0 +1,70 @@
+
+<table cellpadding="0" cellspacing="0" name="bag summary" style="background-color: transparent; border-collapse: collapse; font-family: 'Roboto', sans-serif; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px;"
+width="90%" bgcolor="transparent">
+    <tbody>
+        <tr>
+            <td colspan="2" style="padding: 15px 5%; font-size: 18px; font-weight: bold; background: white; border-bottom: 1px solid lightgray;">
+                <label>{% if labels["LABEL_RESUMEN_TITLE"] == None %} Resumen de mi bolsa  {% else %} {{ labels["LABEL_RESUMEN_TITLE"] }}  {% endif %}</label>
+            </td>
+        </tr> 
+
+
+        {% for abono in body["abonoTarjeta"][:1] %}   
+            {% if abono["nombreCliente"] != None %}
+            <tr>
+                <td colspan=" 2" style="padding-left: 5%; padding-top: 15px; background:
+                    white;">
+                    
+                    <label style=" font-size: 14px; font-weight: bold;">Abono a Liverpool {{ abono["tipoTarjeta"] }} *{{ abono["tarjetaEnmascarada"] }}</label>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=" 2" style="padding-left: 5%; padding-top: 15px; background:
+                    white;"> 
+                    <label style=" font-size: 14px; color: gray;">Nombre: </label>                   
+                    <label style=" font-size: 14px; font-weight: bold; ">{{ abono["nombreCliente"] }} </label>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=" 2" style="padding-bottom: 15px; padding-left: 5%; padding-top: 15px; background:
+                    white;"> 
+                    <label style=" font-size: 14px; color: gray;">Autorizacion: </label>                   
+                    <label style=" font-size: 14px; font-weight: bold; ">{{ abono["autorizacion"] }} </label>
+                    
+                </td>
+            </tr>
+            {% endif %} 
+        {% endfor %} 
+          
+        {% if labels["NAME_HTML"] in ["PAYMENT_SEGMENT_CARD"] %} 
+            <tr>
+                <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-bottom: 15px; padding-top: 15px; color: #333333; background: white; border-top: 1px solid darkgrey;">
+                    Segmento</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding-left: 5%;  padding-bottom: 15px; padding-top: 15px; padding-right: 5%; color: #333333; background: white; border-top: 1px solid darkgrey;">
+                    Importe</td>
+            </tr>
+            {% for producto in body["productos"] %} 
+            <tr style="padding-bottom: 15px;">
+                <td style="font-weight: 300; font-size: 14px; padding-left: 5%; padding-bottom: 15px; padding-right: 5%; color: #666666; background: white;"> {{ producto["descripcion"] }}</td>
+                <td style="text-align: right; font-size: 14px; padding-left: 5%; padding-bottom: 15px; padding-right: 5%;color: #666666; background: white;">$ {{ producto["total"] }}</td>
+            </tr>
+            {% endfor %}
+         {% endif %} 
+
+         
+            <tr>
+                <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; background: white; border-top: 1px solid lightgray;">Total:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; color: rgb(255, 0, 0); padding-top: 15px; padding-right: 5%; background: white; border-top: 1px solid lightgray;">${{ body["resumenBolsa"]["totalBoleta"] }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right; font-size: 12px; color: rgb(255, 0, 0); padding-bottom: 15px; padding-right: 5%; background: white;">({{  body["resumenBolsa"]["importeAPagar"] }})</td>
+            </tr>
+            
+            
+        </tbody>
+</table>
+
+
+

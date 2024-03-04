@@ -1,0 +1,19 @@
+
+{% block datosEvento %}
+<table cellpadding="0" cellspacing="0" name="Contenido Servicios" style="background-color: transparent; border-collapse: collapse; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px; margin-top: 0;" width="90%"
+bgcolor="transparent">
+    <tbody>
+        <tr style="background: white; border-bottom: 1px solid lightgray;">
+            <td colspan="2" style="padding: 5% 5px;">
+                <label style="font-size: 14px; text-align: center;">Número de evento </label><br>
+                <label style="font-size: 14px; font-weight: bold; text-align: center;">{% if labels["NAME_HTML"] in ['SALE_CENTRO_DISENO_INTERIORES'] %} {{ body["mesaRegalos"]["numTarjeta"] }} {% else %} {{ body["mesaRegalos"]["numeroDeEvento"] }} {% endif %}</label>
+            </td>
+            <td style="padding: 5% 5px;">
+                <label style="font-size: 14px; text-align: center;">{% if body["mesaRegalos"]["tipoEvento"] != None %} Tipo de evento {% endif %}</label><br>
+                <label style="font-size: 14px; font-weight: bold; text-align: center;">{% if body["mesaRegalos"]["tipoEvento"] != None %} {{ body["mesaRegalos"]["tipoEvento"] }} {% endif %}</label>
+            </td>
+        </tr>
+       
+    </tbody>
+</table>
+{% endblock %}

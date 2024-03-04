@@ -1,0 +1,281 @@
+{% block formaPago %}
+<table cellpadding="0" cellspacing="0" name="Forma de pago" style="background-color: transparent; border-collapse: collapse; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px;" width="90%" bgcolor="transparent">
+    <tbody>
+        <tr>
+            <td colspan="2" style="font-size: 18px; padding: 10px 5%; background: white; border-bottom: 1px solid lightgray;"><b>{% if labels["LABEL_FORMA_PAGO_TITLE"] == None %} Forma de Pago  {% else %} {{ labels["LABEL_FORMA_PAGO_TITLE"] }}  {% endif %} </b>
+            </td>
+        </tr>
+        {% for tarjeta in body["pagoTarjeta"] %}     
+                <tr>
+                    <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                        background: white;">
+                        <label style="font-size: 14px;">Pago con Tarjeta</label>
+                        <br>
+                        <label style="font-size: 14px;">
+                        </label>
+                    </td>
+                </tr>
+                
+                <tr>                    
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">{% if tarjeta["tipoProducto"] != None %} {{ tarjeta["tipoProducto"] }} {% endif %}</td>                
+                {% if tarjeta["numeroCuenta"] != None %}
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">*{{ tarjeta["numeroCuenta"] }}</td>
+                {% endif %}
+                </tr>
+               
+                {% if tarjeta["nombreCliente"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Tarjeta habiente: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["nombreCliente"] }}</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["nombreBanco"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Banco: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["nombreBanco"] }}</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["autorizacion"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Autorización: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">**{{ tarjeta["autorizacion"] }}**</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["afiliacionBancaria"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Afiliación: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">**{{ tarjeta["afiliacionBancaria"] }}**</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["arqc"] != None %}
+                    <tr>
+                        <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">ARQC: </td>
+                        <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["arqc"] }}</td>
+                    </tr>
+                {% endif %}
+                {% if tarjeta["aid"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">AID: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["aid"] }}</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["montoPagado"] != None %}
+                    <tr>
+                        <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto : </td>
+                        <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ tarjeta["montoPagado"] }}</td>
+                    </tr>
+                {% endif %}
+                {% if tarjeta["pagosMensuales"] != None and tarjeta["pagosMensuales"] != "0" %}
+                    <tr>
+                        <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">{{ tarjeta["pagosMensuales"] }} Pagos mensuales de : </td>
+                        <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ tarjeta["montoMensual"] }}</td>
+                    </tr>
+                {% endif %}
+                {% if tarjeta["leyendaPuntos"] != None %}
+
+                <tr>
+                    <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                        background: white;">
+                        <label style="font-size: 14px;">Pago con Puntos</label>
+                        <br>
+                        <label style="font-size: 14px;">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">{{ tarjeta["leyendaPuntos"] }}: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;"> <!-- 00?0?0?0--></td> 
+                </tr>
+                {% if tarjeta["puntosSaldoAnterior"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Saldo Anterior: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["puntosSaldoAnterior"] }} Pts</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["puntosSaldoRedimido"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Redimidos: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["puntosSaldoRedimido"] }} Pts</td>
+                </tr>
+                {% endif %}
+                {% if tarjeta["puntosSaldoActual"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white; border-bottom: 1px solid lightgray;">Saldo Actual: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white; border-bottom: 1px solid lightgray;">{{ tarjeta["puntosSaldoActual"] }} Pts</td>
+                </tr>
+                {% endif %}
+                {% endif %}
+        {% endfor %}
+        
+
+        {% for cheque in body["pagoCheque"] %}
+                <tr>
+                    <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                        background: white;">
+                        <label style="font-size: 14px;">Cheque</label>
+                        <br>
+                        <label style="font-size: 14px;">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Autorización: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ cheque["numeroAutorizacion"] }}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Cheque número: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ cheque["bandaCheque"] }}</td>                    
+                </tr>
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ cheque["monto"] }}</td>                     
+                </tr>    
+        {% endfor %}
+        {% for cupon in body["pagoCupon"] %}
+                <tr>
+                    <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                        background: white;">
+                        <label style="font-size: 14px;">Cupon</label>
+                        <br>
+                        <label style="font-size: 14px;">
+                        </label>
+                    </td>
+                </tr>
+                {% if cupon["montoPagado"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ cupon["montoPagado"] }}</td>  
+                                     
+                </tr>
+                {% endif %}
+                
+
+        {% endfor %}
+        {% for efectivo in body["pagoEfectivo"] %}
+                <tr>
+                    <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                        background: white;">
+                        <label style="font-size: 14px;">Efectivo</label>
+                        <br>
+                        <label style="font-size: 14px;">
+                        </label>
+                    </td>
+                </tr>
+                {% if efectivo["equivalencia"] != '0' and efectivo["efectivoExtranjero"] != '0' %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">{{ efectivo["leyenda"] }} </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;"></td>  
+                                     
+                </tr>
+                {% endif %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ efectivo["efectivo"] }}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Cambio: </td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ body["cambio"] }}</td>                 
+                
+                </tr>
+                {% if efectivo["equivalencia"] != '0' and efectivo["efectivoExtranjero"] != '0' %}
+                <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white; width: 50%;">{% if efectivo["leyendaMonedaExtranjera"] != None %} {{ efectivo["leyendaMonedaExtranjera"] }} {% else %} Tipo de cambio: {% endif %}</td>    
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white; width: 50%;">({{ efectivo["tipoDeMoneda"] }} {{ efectivo["efectivoExtranjero"] }} * ${{ efectivo["equivalencia"] }})</td>                              
+                </tr>
+                {% endif %}
+               
+
+                 
+        {% endfor %}
+
+        {% if labels["NAME_HTML"] != "SALE_MONEDERO" %}    
+        {% for monedero in body["pagoMonedero"] %}
+        <tr>
+            <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                background: white;">
+                <label style="font-size: 14px;">Monedero</label>
+                <br>
+                <label style="font-size: 14px;">
+                </label>
+            </td>
+        </tr>
+            {% if monedero["noMonederoEnmascarado"] != None %}
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Cuenta:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ monedero["noMonederoEnmascarado"] }}</td>
+            </tr>
+            {% endif %}
+
+            {% if monedero["saldoAnteriorMonedero"] != None %}
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Saldo anterior:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["saldoAnteriorMonedero"] }}</td>
+            </tr>
+            {% endif %}
+            {% if monedero["saldoUtilizadoMonedero"] != None %}
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto utilizado:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["saldoUtilizadoMonedero"] }}</td>
+            </tr>
+            {% endif %}
+            {% if monedero["montoObtenidoEnMonedero"] != None %}
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto obtenido:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["montoObtenidoEnMonedero"] }}</td>
+            </tr>
+            {% endif %}
+            {% if monedero["saldoActualMonedero"] != None %}
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Saldo Actual:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["saldoActualMonedero"] }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        {% else %}
+            {% for monedero in body["pagoMonedero"][1:] %}
+            <tr>
+                <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
+                    background: white;">
+                    <label style="font-size: 14px;">Monedero</label>
+                    <br>
+                    <label style="font-size: 14px;">
+                    </label>
+                </td>
+            </tr>
+                {% if monedero["noMonederoEnmascarado"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Cuenta:</td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ monedero["noMonederoEnmascarado"] }}</td>
+                </tr>
+                {% endif %}
+
+                {% if monedero["saldoAnteriorMonedero"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Saldo anterior:</td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["saldoAnteriorMonedero"] }}</td>
+                </tr>
+                {% endif %}
+                {% if monedero["saldoUtilizadoMonedero"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto utilizado:</td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["saldoUtilizadoMonedero"] }}</td>
+                </tr>
+                {% endif %}
+                {% if monedero["montoObtenidoEnMonedero"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Monto obtenido:</td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["montoObtenidoEnMonedero"] }}</td>
+                </tr>
+                {% endif %}
+                {% if monedero["saldoActualMonedero"] != None %}
+                <tr>
+                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Saldo Actual:</td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">${{ monedero["saldoActualMonedero"] }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        
+    </tbody>
+</table>
+{% endblock %}

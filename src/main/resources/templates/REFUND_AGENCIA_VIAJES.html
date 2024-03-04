@@ -1,0 +1,37 @@
+{% extends '0_base.html' %}
+
+
+{% block mensaje %}
+    {% include '2_mensajeDevolucion.html' %} 
+{% endblock %}
+
+
+{% block labelTipoTicket %}
+    {% for label in labels["LABEL_TYPE"] %}
+        {% include '2_tab.html' %} 
+    {% endfor %}
+{% endblock %}
+
+
+<!--{% block warnings %}
+    {% for warnings in labels["WARNINGS"]["val1"] %}
+        {% include '3_warning.html' %} 
+    {% endfor %} 
+{% endblock %}-->
+
+
+{% block labelTipoProducto %} 
+    {% for label in labels["LABEL_PRODUCT"] %}
+        {% include '2_tab.html' %} 
+    {% endfor %}
+{% endblock %}
+
+    
+{% block producto %}
+    {% include '2_productosDevolucion.html' %} 
+{% endblock %}
+
+
+{% block resumenBolsa %}
+    {% include '2_resumenBolsa.html' %}
+{% endblock %}   

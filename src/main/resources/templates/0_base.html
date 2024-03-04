@@ -1,0 +1,61 @@
+<div style="background:transparent; width:100%">
+  <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">Todos tus tickets de compra en un solo lugar.</span>
+  <table cellpadding="0" cellspacing="0" style="background-color:#f7f7f7;width:100%;border-collapse:collapse;max-width:650px;margin:auto">
+    <tr>
+      <td>
+        <!--Start Header-->
+        {% include '0_header.html' %}
+        <!--End Header-->
+
+        <!-- Start Opcional-->
+        {% block mensaje %}{% endblock %}
+        <!-- End Opcional-->
+
+        <!-- End Opcional-->
+        {% block encuestaMedaliaSaludo %}{% endblock %}
+
+        {% block labelTipoTicket %}{% endblock %}
+
+
+        <!--{% block infoCompra %}{% endblock %}-->
+        {% include '2_infoCompra.html' %}
+
+        <!-- Start Opcional-->
+        {% block datosEvento %}{% endblock %}
+        <!-- End Opcional-->
+
+        <!-- Start Opcional-->
+        {% include '3_warning.html' %}
+        <!-- End Opcional-->
+
+
+        {% block labelTipoProducto %}{% endblock %}
+
+
+        {% block producto %}{% endblock %}
+
+        {% block videojuegos %}{% endblock %}
+
+        {% block factura %}{% endblock %}
+        
+        <!-- Start Opcional-->
+        {% block warningsInferiores %}{% endblock %}
+        <!-- End Opcional-->
+
+        {% block resumenBolsa %}{% endblock %}
+      
+
+        <!--{% block formaPago %}{% endblock %}-->
+        {% include '1_formaPago.html' %}
+
+      
+        <!--{% block despedida %}{% endblock %}-->
+        {% include '1_despedida.html' %}
+
+        <!--Start Footer-->
+        {% include '0_footer.html' %}
+        <!--End Footer-->
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,147 @@
+
+<table cellpadding="0" cellspacing="0" name="bag summary" style="background-color: transparent; border-collapse: collapse; font-family: 'Roboto', sans-serif; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px;"
+width="90%" bgcolor="transparent">
+    <tbody>
+        <tr>
+            <td colspan="2" style="padding: 15px 5%; font-size: 18px; font-weight: bold; background: white; border-bottom: 1px solid lightgray;">
+                <label>{% if labels["LABEL_RESUMEN_TITLE"] == None %} Resumen de mi bolsa  {% else %} {{ labels["LABEL_RESUMEN_TITLE"] }}  {% endif %}</label>
+            </td>
+        </tr> 
+        {% if labels["NAME_HTML"] == "SALE_MONEDERO" %}
+            {% for monedero in body["pagoMonedero"][:1] %}   
+                {% if monedero["noMonederoEnmascarado"] != None %}
+                <tr>
+                    <td colspan=" 2" style=" padding-bottom: 15px; padding-left: 5%; padding-top: 15px; background:
+                        white;">
+                        <label style=" font-size: 14px; color: gray;">Cuenta:</label>
+                        <label style=" font-size: 14px; font-weight: bold; padding-left: 5%;">{{ monedero["noMonederoEnmascarado"] }}</label>
+                    </td>
+                </tr>
+                {% endif %} 
+            {% endfor %}  
+        {% endif %} 
+
+        {% for abono in body["abonoTarjeta"][:1] %}   
+            {% if abono["nombreCliente"] != None %}
+            <tr>
+                <td colspan=" 2" style=" padding-bottom: 15px; padding-left: 5%; padding-top: 15px; background:
+                    white;">
+                    
+                    <label style=" font-size: 14px; font-weight: bold; padding-left: 5%;">{{ abono["tipoTarjeta"] }}   {{ abono["tarjetaEnmascarada"] }}</label>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=" 2" style=" padding-bottom: 15px; padding-left: 5%; padding-top: 15px; background:
+                    white;"> 
+                    <label style=" font-size: 14px; color: gray;">Nombre: </label>                   
+                    <label style=" font-size: 14px; font-weight: bold; padding-left: 5%;">{{ abono["nombreCliente"] }} </label>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=" 2" style=" padding-bottom: 15px; padding-left: 5%; padding-top: 15px; background:
+                    white;"> 
+                    <label style=" font-size: 14px; color: gray;">Autorizacion: </label>                   
+                    <label style=" font-size: 14px; font-weight: bold; padding-left: 5%;">{{ abono["autorizacion"] }} </label>
+                    
+                </td>
+            </tr>
+            {% endif %} 
+        {% endfor %} 
+
+          
+        {% if labels["NAME_HTML"] in ["PAYMENT_SEGMENT_CARD"] %} 
+            <tr>
+                <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; color: #333333; background: white; border-top: 1px solid darkgrey;">
+                    Segmento</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; padding-right: 5%; color: #333333; background: white; border-top: 1px solid darkgrey;">
+                    Importe</td>
+            </tr>
+            {% for producto in body["productos"] %} 
+            <tr>
+                <td style="font-weight: 300; font-size: 14px; padding-left: 5%; padding-top: 15px; padding-right: 5%; color: #666666; background: white;"> {{ producto["descripcion"] }}</td>
+                <td style="text-align: right; font-size: 14px; padding-left: 5%; padding-top: 15px;  padding-right: 5%;color: #666666; background: white;">$ {{ producto["total"] }}</td>
+            </tr>
+            {% endfor %}
+         {% endif %} 
+
+            {% if body["resumenBolsa"]["subtotal"] != None %}
+                {% if labels["NAME_HTML"] not in ['SALE_MONEDERO'] %}
+                <tr>
+                    <td style="font-size: 14px; color: gray; padding-left: 5%; padding-top: 15px; background: white;">Subtotal:</td>
+                    <td style="text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-top: 15px;  padding-right: 5%; background: white;">${{  body["resumenBolsa"]["subtotal"] }}</td>
+                </tr>
+                {% endif %}
+            {% endif %}
+            {% if body["resumenBolsa"]["descuento"] != None %}
+                {% if labels["NAME_HTML"] not in ['SALE_MONEDERO'] %}
+            <tr>
+                <td style="font-size: 14px; color: gray; padding-left: 5%; padding-top: 15px; background: white;">Descuento:</td>
+                <td style="text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-top: 15px;  padding-right: 5%; background: white;">${{ body["resumenBolsa"]["descuento"] }}</td>
+            </tr>
+                {% endif %}  
+            {% endif %} 
+            {% if body["cambio"] != None %}
+                {% if labels["NAME_HTML"] not in ['SALE_MONEDERO'] %}
+            <tr>
+                <td style="font-size: 14px; color: gray; padding-left: 5%; padding-top: 15px; padding-bottom: 15px; background: white;">Cambio:</td>
+                <td style="text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-top: 15px; padding-bottom: 15px; padding-right: 5%; background: white;">${{ body["cambio"] }}</td>
+            </tr>
+                {% endif %}  
+            {% endif %}            
+            <tr>
+                <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; background: white; border-top: 1px solid lightgray;">Total:</td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; color: rgb(255, 0, 0); padding-top: 15px; padding-right: 5%; background: white; border-top: 1px solid lightgray;">${{ body["resumenBolsa"]["totalBoleta"] }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right; font-size: 12px; color: rgb(255, 0, 0); padding-bottom: 15px; padding-right: 5%; background: white;">({{  body["resumenBolsa"]["importeAPagar"] }})</td>
+            </tr>
+            {% if labels["NAME_HTML"] == "SALE_MONEDERO" %}
+                {% for monedero in body["pagoMonedero"][:1] %}
+                <!-- {% if monedero["noMonederoEnmascarado"] != None %}
+                    <tr>
+                        <td colspan=" 2" style=" padding-bottom: 15px; padding-left: 5%; padding-top: 15px; background:
+                            white;">
+                            <label style=" font-size: 14px; color: gray;">Cuenta:</label>
+                            <label style=" font-size: 14px; font-weight: bold; padding-left: 5%;">{{ monedero["noMonederoEnmascarado"] }}</label>
+                        </td>
+                    </tr>
+                    {% endif %}-->
+
+                    {% if monedero["saldoAnteriorMonedero"] != None %}
+                    <tr>
+                        <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; background: white; border-top: 1px solid lightgray;">Saldo anterior:</td>
+                        <td style=" text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-right: 5%; border-top: 1px solid lightgray; background:
+                            white;">${{ monedero["saldoAnteriorMonedero"] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if monedero["saldoUtilizadoMonedero"] != None %}
+                    <tr>
+                        <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; background: white;">Monto utilizado:</td>
+                        <td style=" text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-right: 5%;  background:
+                            white;">${{ monedero["saldoUtilizadoMonedero"] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if monedero["montoObtenidoEnMonedero"] != None %}
+                    <tr>
+                        <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; background: white; ">Monto obtenido:</td>
+                        <td style=" text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-right: 5%;  background:
+                            white;">${{ monedero["montoObtenidoEnMonedero"] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if monedero["saldoActualMonedero"] != None %}
+                    <tr>
+                        <td style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; padding-bottom: 15px; background: white;">Saldo Actual:</td>
+                        <td style=" text-align: right; font-size: 14px; color: rgb(78, 78, 78); padding-right: 5%; padding-bottom: 15px; background:
+                            white;">${{ monedero["saldoActualMonedero"] }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            
+        </tbody>
+</table>
+
+
+

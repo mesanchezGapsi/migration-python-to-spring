@@ -1,0 +1,38 @@
+{% block videojuegos %}
+<table cellpadding="0" cellspacing="0" name="Contenido Tus Productos" style="background-color:transparent;border-collapse:collapse;width:90%;margin:10px 5%;padding:0;border:1px solid rgb(240,236,236);border-radius:3px;margin-top:0;font-family:Arial, sans-serif;" width="90%" bgcolor="transparent">
+    <tbody>
+        {% if body["videojuegosDescargables"] != None %}
+            {% if body["videojuegosDescargables"]["codigoDescarga"] != None %}
+            <tr style="background:white">
+                
+                        <td style="padding-left:20px;padding-top:15px;width:70%">
+                            <label style="font-size:12px">Código de descarga : </label><br>
+                            <label style="font-size:12px">{{ body["videojuegosDescargables"]["codigoDescarga"] }}</label>
+                        </td>           
+            
+                        {% if brand == "LIV" %}
+                        <td style="float:right;padding-top:15px;margin:20px;">
+                            <a href="{{ body['videojuegosDescargables']['urlDescarga'] }}" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #e10098;color:#e10098;">Descargar</a>
+                        </td>
+                        {% endif %}
+                        {% if brand in ['PBA', 'PBK', 'GAP', 'WSO', 'WEL'] %}
+                        <td style="float:right;padding-top:15px;margin:20px;">
+                            <a href="{{ body['videojuegosDescargables']['urlDescarga'] }}" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #000;color:#000;">Descargar</a>
+                        </td>
+                        {% endif %} 
+                
+                
+            </tr>
+            <tr style="background:white">
+                <td colspan=" 2" style="padding:15px; width: 90%; max-width: 400px;">
+                    <a href='urlInformacion' style="color:#e10098;">Más Información</a><br>
+                </td>
+            </tr>
+            {% endif %}
+        {% endif %}        
+    </tbody>
+</table>
+{% endblock %}
+
+
+ 

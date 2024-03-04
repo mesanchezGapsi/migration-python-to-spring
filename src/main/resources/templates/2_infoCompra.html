@@ -1,0 +1,51 @@
+
+{% block infoCompra %}
+
+<table cellpadding="0" cellspacing="0" name="Contenido Servicios" style="background-color:transparent;border-collapse:collapse;font-family:'Roboto',sans-serif;width:90%;margin:10px 5%;padding:0;border:1px solid rgb(240,236,236);border-radius:3px;max-width:630px;margin-top:0" width="100%" bgcolor="transparent">
+    <tbody>
+        <tr style="background:white;border-bottom:1px solid lightgray">
+            <td colspan="2" style="padding:10px 5px 10px 20px">
+                <label style="font-size:14px"> {% if labels["NAME_HTML"] in ["REFUND_NORMAL", "REFUND_SOMS", "REFUND_GIFTS_PLAN", "REFUND_OPTICA", "REFUND_SASTRERIA", "REFUND_CENTRO_DISENO_INTERIORES", "REFUND_AGENCIA_VIAJES", "REFUND_LLANTAS", "REFUND_MARKETPLACE_TRANSACTION"] %} Fecha de devolución: {% else %} Fecha de pago:  {% endif %} </label>
+                <label style="font-size:14px;font-weight:bold">{{ body["ticket"]["fechaDeCompra"] }}</label>
+            </td>
+            <td style="padding:10px 20px 10px 5px">
+                <label style="font-size:14px">Total de pago: </label>
+                <label style="font-size:14px;font-weight:bold">${{ body["ticket"]["totalCompra"] }}</label>
+            </td>
+        </tr>
+        <tr style="background:white">
+            <td colspan="3" style="text-align:center;padding:10px 5px;border-top:1px solid lightgray"></td>
+        </tr>
+        <tr style="background:white">
+            <td style="margin:0;padding: 0 20px;">
+                <label style="font-size:12px;color:darkgray">No. de Terminal: </label><br>
+                <label style="font-size:12px">{{ body["ticket"]["terminal"] }}</label>
+            </td>
+            <td style="margin:0;padding: 0 20px;">
+                <label style="font-size:12px;color:darkgray">Docto: </label><br>
+                <label style="font-size:12px">{{ body["ticket"]["numBoleta"] }}</label>
+            </td>
+            <td style="margin:0;padding: 0 20px;">
+                <label style="font-size:12px;color:darkgray">Tienda: </label><br>
+                <label style="font-size:12px">{{ body["tienda"]["numeroTienda"] }}</label>
+            </td>
+        </tr>
+        <tr style="background:white">
+            <td style="margin:0;padding: 0 20px;">
+                <label style="font-size:12px;color:darkgray">Vendedor: </label><br>
+                <label style="font-size:12px">{{ body["vendedor"]["numeroVendedor"] }}</label>
+            </td>
+            <td colspan="2" style="padding:10px 5px">
+                <label style="font-size:12px;color:darkgray">Atendido: </label><br>
+                <label style="font-size:12px;text-transform:uppercase">{{ body["vendedor"]["nombreVendedor"] }}</label>
+            </td>
+        </tr>
+        {% if body ["ticket"]["codigoBarra"] != None %}
+        <tr style="background:white">
+            <td colspan="3" style="padding:10px 5px;border-top:1px solid lightgray; width: 90%; max-width: 400px;"><img src="https://barcode-mfkkoyaieq-uc.a.run.app/{{body['ticket']['codigoBarra']}}" alt="barcode" width="400" height="80" border=" 0" style="margin:0 auto;display:block; width: 90%; max-width: 400px;" class="CToWUd a6T" tabindex="0">
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

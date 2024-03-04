@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{0_base :: base}"></div>
+<div th:replace="~{2_mensajeGracias :: mensaje}"></div>
+<div th:replace="~{2_encuestaMedalia_saludo :: encuestaMedaliaSaludo}"></div>
+<div th:each="label : ${labels.LABEL_TYPE}" th:replace="~{2_tab :: labelTipoTicket}"></div>
+<div th:each="label : ${labels.LABEL_PRODUCT}" th:replace="~{2_tab :: labelTipoProducto}"></div>
+<div th:replace="~{2_productosSinImagen :: producto}"></div>
+<div th:replace="~{1_facturaProducto :: factura}"></div>
+<div th:replace="~{2_resumenBolsa :: resumenBolsa}"></div>
+</body>
+</html>

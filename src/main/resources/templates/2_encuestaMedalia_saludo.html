@@ -1,0 +1,48 @@
+{% block encuestaMedaliaSaludo %}
+                  {% if body["tipoTicket"] == '104' and body["productos"][0]["seccion"] == '0898' and body["productos"][0]["sku"].endswith('898')  %}
+                  
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=EG&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+
+                  {% endif%}
+                  {% if body["tipoTicket"] == '104' and (body["productos"][0]["seccion"] == '0897' and body["productos"][0]["sku"].endswith('897'))  %}
+
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=RS&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+                  {% if body["tipoTicket"] == '104' and (body["productos"][0]["seccion"] != '0897' or not body["productos"][0]["sku"].endswith('897')) and (body["productos"][0]["seccion"] != '0898' or not body["productos"][0]["sku"].endswith('898'))  %}
+
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=SV&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+                  {% if body["tipoTicket"] == '103' and (body["productos"][0]["seccion"] == '0897' and body["productos"][0]["sku"].endswith('897'))  %}
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=RS&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+                  {% if body["tipoTicket"] == '103' and (body["productos"][0]["seccion"] != '0897' or not body["productos"][0]["sku"].endswith('897'))  %}
+
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=SV&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+                  {% if body["tipoTicket"] == '101' or body["tipoTicket"] == '102' %}
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=SV&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+                  {% if body["tipoTicket"] == '119'  %}
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=PC&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+                  {% if body["tipoTicket"] == '105'  %}
+                  <a href = https://cte.liverpool.com.mx/?e-ticket&u=v_{{ body['vendedor']['numeroVendedor']}}&st=t_{{ body['tienda']['numeroTienda']}}&p=DV&tn={{body['ticket']['codigoBarra']}}&cte={{body['cliente'][0]['emailCliente']}}>
+                      <img src="https://image.prom.liverpool.com.mx/lib/fe3211727364047e761678/m/1/bd310fb5-a5b8-4d21-b6ed-f3535b138e3d.jpg">
+                  </a>
+                  {% endif %}
+{% endblock %}
+

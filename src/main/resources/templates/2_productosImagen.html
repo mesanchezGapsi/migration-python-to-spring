@@ -1,0 +1,153 @@
+
+<table cellpadding="0" cellspacing="0" name="transaction" style="background-color: white; border-collapse: collapse; font-family: 'Roboto', sans-serif; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px; margin-top: 0;"
+width="90%" bgcolor="transparent">
+    <tbody>
+
+        {% if  body["ticket"]["codigoBarraGE"] != None %}
+        <tr style=" background: white;">
+            <td  colspan="2" style="padding-left: 5%; padding-top: 15px; width: 70%;">
+                <label style=" font-size: 14px;">Referencia : </label>
+                <label style=" font-size: 14px;">{{ body["ticket"]["codigoBarraGE"] }}</label>
+            </td>           
+        </tr>
+        <tr style=" background: white;">
+            <td colspan="5" style="padding-left: 5%; width: 90%; max-width: 400px;">
+                <img src="https://barcode-mfkkoyaieq-uc.a.run.app/{{body['ticket']['codigoBarraGE']}}" alt="barcode" width="400" height="80" border=" 0" style="margin:0 auto;display:block; width: 90%; max-width: 400px;" class="CToWUd a6T" tabindex="0">
+            </td>
+        </tr>
+        {% endif %}
+
+
+        {% for producto in body["productos"] %}
+
+        <tr style="background: white; border-bottom: 1px solid lightgray;">
+            {% if body["noPedido"] != None %}
+            <td colspan="2" style="padding: 10px 5%; border-bottom: 1px solid lightgray;">
+                <label style="font-size: 14px;">{{ labels["LABEL_PRODUCT_TITLE"][0] }}</label>  
+                
+                <label style="font-size: 14px; font-weight: bold; color: #e10b98;">{{ body["noPedido"] }}</label> 
+                  
+            </td>
+            {% endif %} 
+            {% if labels["NAME_HTML"] not in ['SALE_SASTRERIA', 'SALE_CENTRO_DISENO_INTERIORES', 'SALE_GIFTS_PLAN', 'PACKAGE'] %}
+            <td colspan="2" style="padding: 10px 5%; border-bottom: 1px solid lightgray;">
+                <label style="font-size: 14px;">{% if producto["tipoEntrega"] == None %} Entregado {% else %} {{ producto["tipoEntrega"] }} {% endif %}</label>                  
+            </td>
+            {% endif %} 
+        </tr>  
+        {% if producto["fechaEstimadaEntregaInicio"] != None or producto["fechaEstimadaEntregaFin"] != None or producto["fechaEntregaFinal"] != None %}
+        <tr style="background: white;">
+            <td colspan="3" style="padding: 10px 5%; border-bottom: 1px solid lightgray;">
+                <label style="font-size: 14px; color: darkgray;">Fecha estimada de entrega: <span style="font-weight: bold; color: #13be6e;">{% if producto["fechaEntregaFinal"] != None %} {{ producto["fechaEntregaFinal"] }} {% else %} {{ producto["fechaEstimadaEntregaInicio"] }} {% if producto["fechaEstimadaEntregaFin"] != None %} - {{producto["fechaEstimadaEntregaFin"] }} {% endif %} {% endif %}</span>
+                </label>
+            </td>
+        </tr>    
+        {% endif %}
+    
+            
+        {% if producto["seccion"] == "0640" and producto["codigoBarraGE"] != None %}  <tr style="background: white;">
+            <td rowspan="5" style="width: 35%; max-width: 180px; padding: 10px;">
+                <img src="https://assets.liverpool.com.mx/assets/images/mailing/MasGarantia.jpg" alt="sku-image" height="" usemap="#m_-8738507492739174140_Map2" border="0" style="margin:0 auto;display:inline;width: 100%;" class="CToWUd a6T" tabindex="0">
+            </td>
+            <td colspan="2" style="padding: 10px 5%;">
+                <label style="font-size: 18px; font-weight: bold; color: black;">{{ producto["nombre"] }} </label>
+            </td>
+        </tr>
+        {% endif %} 
+        {% if producto["sku"] in [ '52165342', '52165351', '52165385', '52165369', '52165377', '52165288', '52165261', '52165245', '52165253', '52165270', '52165431' ] and producto["codigoBarraGE"] == None %} 
+        <tr style="background: white;">
+            <td rowspan="5" style="width: 35%; max-width: 180px; padding: 10px;">
+                <img src="https://assetspwa.liverpool.com.mx/assets/images/mail/NoSpot.png" alt="sku-image" height="" usemap="#m_-8738507492739174140_Map2" border="0" style="margin:0 auto;display:inline;width: 100%;" class="CToWUd a6T" tabindex="0">
+            </td>
+            <td colspan="2" style="padding: 10px 5%;">
+                <label style="font-size: 18px; font-weight: bold; color: black;">{{ producto["nombre"] }} </label>
+            </td>
+        </tr>
+        {% endif %}
+        {% if producto["seccion"] != "0640" %} 
+        <tr style="background: white;">
+            <td rowspan="5" style="width: 35%; max-width: 180px; padding: 10px;">
+                <img src="{{producto['imagen']}}" alt="sku-image" height="" usemap="#m_-8738507492739174140_Map2" border="0" style="margin:0 auto;display:inline;width: 100%;" class="CToWUd a6T" tabindex="0">
+            </td>
+            <td colspan="2" style="padding: 10px 5%;">
+                <label style="font-size: 18px; font-weight: bold; color: black;">{{ producto["nombre"] }} </label>
+            </td>
+        </tr> 
+        {% endif %}  
+            {% if producto["seller"] != None %}
+            <tr style="background: white;">
+                <td colspan="2" style="padding: 10px 5%;">
+                    <label style="font-size: 14px; color: darkgray;">Vendido por:<span> <b>{{ producto["seller"] }}      </b></span>
+                    </label>
+                </td>
+            </tr>
+            {% endif %}
+            <!--<tr style="background: white;">
+                <td colspan="2" style="padding: 10px 5%;">
+                    <label style="font-size: 14px; color: darkgray;">Código de producto:<span> <b>{{ producto["sku"] }}      </b></span>
+                    </label>
+                </td>
+            </tr>-->
+            <tr style="background: white;">
+                <td colspan="2" style="padding: 10px 5%;">
+                    <label style="font-size: 14px; color: darkgray;">Código de producto:<span> <b>{{ producto["sku"] }}      </b></span>
+                    </label><br>
+                    {% if producto["IMEI"] != None %}
+                    <label style="font-size: 12px; font-weight: bold; color: gray;">{{ producto["IMEI"] }}</label><br>
+                    {%endif%}
+                    {% if producto["numeroTelefono"] != None %}
+                    <label style="font-size: 12px; font-weight: bold; color: gray;">{{ producto["numeroTelefono"] }}</label>
+                    {%endif%}
+                </td>
+            </tr>
+            <tr style="background: white; vertical-align: top; vertical-align: text-top;">
+                <td style="padding: 10px 5%;">
+                    <label style="font-size: 12px; color: darkgray;">Precio único:
+                        {% if producto["articuloNormalDescuento"] != None%}                        
+                        <p style="font-size: 12px; font-weight: bold; text-decoration: line-through;">${{ producto["precioUnitario"] }}</p>
+                        <p style="font-size: 12px; font-weight: bold; color: black; line-height: 0.1em;">${{ producto["articuloNormalDescuento"] }} </p>
+                        {% else %}
+                        <p style="font-size: 12px; font-weight: bold; color: black; line-height: 0.1em;">${{ producto["precioUnitario"] }}</p>
+                        {% endif %}
+                        
+                    </label>
+                </td>
+                
+                <td style="padding: 10px 5%; vertical-align: top; vertical-align: text-top;">
+                    {% for promocion in producto["promocion"][:1] %}
+                    <label style="font-size: 12px; color: darkgray;">{% if producto["promocion"] != None %} Promoción {% endif %}
+                        
+                        <span style="color: black;"> <br> {% for promocion in producto["promocion"] %} {{ promocion }}  <br>{% endfor %}</span>
+                       
+                    </label>
+                    {% endfor %}
+                </td>
+                
+            </tr>
+            <tr style="background: white; vertical-align: top; vertical-align: text-top;">  
+                              
+                {% for descuento in producto["descuentosValor"][:1] %}<td style="padding: 10px 5%;">
+                    <label style="font-size: 12px; color: darkgray;">{% if producto["descuentosValor"] != None %} Descuento {% endif %} 
+                        <span> <br> {% for descuento in producto["descuentosValor"] %} <b>${{ descuento }} </b><br> {% endfor %}  </span>
+                    </label>
+                    
+                </td>
+                {% endfor %}
+                
+                <td style="padding: 10px 5%; vertical-align: top; vertical-align: text-top;">
+                    <label style="font-size: 12px; color: darkgray;">Cantidad:<span> <br><b>{{ producto["cantidad"] }}</b></span>
+                    </label>
+                </td>
+            </tr>
+            <tr style="background: white; border-bottom: 1px solid lightgray;">
+                <td colspan="2" style="padding: 10px 5%;">
+                    <label style="font-size: 12px; color: darkgray;">Total:
+                        <br><span style="color: rgb(230, 15, 25);"> <b>${{ producto["total"] }}</b></span>
+                    </label>
+                </td>
+            </tr>
+        {% endfor %}
+        
+        
+    </tbody>
+</table>

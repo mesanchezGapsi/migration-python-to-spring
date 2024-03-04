@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style> 
+      input:checked +*+  div , input:checked + div{
+        display:block;
+      }
+    </style>
+  </head>
+  <body style="background: #f7f7f7; width: 60%; margin-left: 20%;" >
+    <table cellpadding="0" cellspacing="0" name="Header" style="background-color: transparent; width: 100%; border-collapse: collapse; font-family: 'Roboto', sans-serif;" width="100%" bgcolor="transparent">
+      <tbody>
+        <tr>
+          <td style="width: 100%; height: 133px; background-color: #e10098;" height="133">
+            <img src="https://assetspwa.liverpool.com.mx/assets/images/logos/liverpool-logo.svg" alt="logo" width="200" height="43" usemap="#Map2" border="0" style="margin: 0 auto; display: block;">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" name="Reminder" style="background-color: transparent; border-collapse: collapse; font-family: 'Roboto', sans-serif; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px;"
+           width="90%" bgcolor="transparent">
+      <tbody>
+        <tr style="background: white;">
+          <td style="padding: 5px 5px;">
+            <p style="text-align: center; font-size: 18px; margin: 15px 45px 10px 45px;">Hola {{ cliente["nombre"] }}! Te contactamos de {{ cliente["TIENDA_DES"] 
+            }}, nos gustar&iacute;a conocer como fue tu experiencia de servicio que recibiste por SILVIA GUADALUPE MEJIA MACIAS en tu &uacute;ltima devoluci&oacute;n en el departamento Relojes Finos. 
+            </p>
+          </td>
+        </tr>
+        <tr style="background: white;">
+          <td style="text-align: center; padding-bottom: 15px; padding-left: 10px; padding-right: 10px;">
+            <p style="text-align: center; font-size: 14px;">&iquest;Qu&eacute; tan satisfecho te sientes?
+            </p>
+          </td>
+        </tr>
+        <tr style="background: white;">
+          <td style="text-align: center; padding-bottom: 15px; padding-left: 10px; padding-right: 10px;">
+            <form action="https://dev-api.liverpool.com.mx/contactar-cliente" method="post" id = "nps">
+              <input name="satisfacion" type="radio" value="Supero expectativa" /> Super&oacute; expectativa 
+              <input name="satisfacion" type="radio" value="Cumple lo esperado" /> Cumple lo esperado 
+              <input name="satisfacion" type="radio" value="Insatisfecho"/> Insatisfecho 
+              <div class="recomendacion" id="rec" style="display: none;">
+                <br>
+                <span>¿Qué tendría que hacer el asesor NOMBRE_ASESOR para mejorar tu experiencia? 
+                  <br>
+                  <br>
+                </span> 
+                <input  name="recomendacion" type="checkbox" value="ACTITUD Y SERVICIO" /> 
+                <label >ACTITUD Y SERVICIO 
+                </label>
+                <input name="recomendacion" type="checkbox" value="MEJORAR EXPLICACION" /> 
+                <label >MEJORAR EXPLICACION  
+                </label>
+                <input  name="recomendacion" type="checkbox" value="SEGUIMIENTO A CITAS" /> 
+                <label>SEGUIMIENTO A CITAS  
+                </label>
+                <br /> 
+                <br /> 
+              </div>
+              <textarea cols="60" rows="2"  form="nps"  name="comentario" placeholder="&iquest;Te gustar&iacute;a agregar alg&uacute;n comentario?"></textarea>
+              <br /> 
+              <button type="submit" value="Submit" style="text-decoration: none; padding: 10px 20px; border-radius: 3px; background: white; border: 3px solid #e10098; color: #e10098;" >Enviar
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" name="Footer" style="background-color: transparent; border-collapse: collapse; font-family: 'Roboto', sans-serif; width: 90%; margin: 10px 5%; padding: 0; border-radius: 3px; margin-top: 0; border: 0px !important;"
+           width="90%" bgcolor="transparent">
+      <tbody>
+        <tr>
+          <td style="padding-top: 15px;">
+            <a href="https://assetspwa.liverpool.com.mx/ayuda/index.html#/faq/faq-entregas">
+              <img src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/beneficios_liv/envio_new.jpg" alt="logo" width="155" height="70" usemap="#Map2" border="0" style="margin: 0 auto; display: block;">
+            </a>
+          </td>
+          <td style="padding-left: 10px; padding-top: 15px;">
+            <a href="https://assetspwa.liverpool.com.mx/ayuda/index.html#/sec/terminos-y-condiciones/entregas/click-collect">
+              <img src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/beneficios_liv/click_new.jpg" alt="logo" width="155" height="70" usemap="#Map2" border="0" style="margin: 0 auto; display: block;">
+            </a>
+          </td>
+          <td style="padding-left: 10px; padding-top: 15px;">
+            <a href="https://www.liverpool.com.mx/tienda/paginas/garantia">
+              <img src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/beneficios_liv/garantia_new.jpg" alt="logo" width="155" height="70" usemap="#Map2" border="0" style="margin: 0 auto; display: block;">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="padding-top: 15px;">
+            <p style="text-align: center; font-size: 11px; font-weight: bold;">Ventas y centro de Atención Telefónica (CAT)
+            </p>
+            <p style="text-align: center; font-size: 11px; line-height: 0.1em;"> (55) 5262 9999 / 800 713 55555
+            </p>
+            <p style="text-align: center; font-size: 11px; line-height: 0.1em;"> Desde tu celular *7171
+            </p>
+            <p style="text-align: center; font-size: 11px; font-weight: bold; padding: 15px 0;">
+              <a href="https://assetspwa.liverpool.com.mx/ayuda/index.html#/sec/terminos-y-condiciones/proteccion-de-datos/aviso-clientes" style="color: #000000; text-decoration: none;">Aviso de Privacidad | 
+              </a>
+              <a href="https://assetspwa.liverpool.com.mx/ayuda/index.html#/" style="color: #000000; text-decoration: none;">Ayuda | 
+              </a>
+              <a href="https://assetspwa.liverpool.com.mx/ayuda/index.html#/sec/terminos-y-condiciones/cancelaciones" style="color: #000000; text-decoration: none;">Cancelaciones | 
+              </a>
+              <a href="https://www.liverpool.com.mx/tienda/paginas/garantia" style="color: #000000; text-decoration: none;">Garantía de Servicio
+              </a>
+            </p>
+            <p style="text-align: center; font-size: 11px; line-height: 0.1em;">Distribuidora Liverpool S.A. de C.V. Prolongación Vasco de Quiroga 4800, Torre 2, Piso 3. 
+            </p>
+            <p style="text-align: center; font-size: 11px; line-height: 0.1em;">Colonia Santa Fe Cuajimalpa. Delegación Cuajimalpa de Morelos. C.P. 05348, Ciudad de México. 
+            </p>
+            <p style="text-align: center; font-size: 11px; line-height: 0.1em;">DLI931201MI9. Régimen General de Ley Personas Morales.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: center; padding: 15px 10px;">
+            <label style="font-size: 12px; font-weight: bold;">Descarga Liverpool Pocket
+            </label>
+          </td>
+        </tr>
+        <tr colspan="3">
+          <td>
+          </td>
+          <td>
+            <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/b591554921de3ffbf7dfab81f66469120e0d47ffee4a43b12f9ef1d0a853af4b.png" alt="logo" height="20" usemap="#Map2" border="0" style="margin: 0 auto; display: inline; margin-left: 20px;">
+            <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/18109379b9ac4c33150bea53d6de487ec7f8bb5a684ab21c89bc472185c29039.png" alt="logo" height="20" usemap="#Map2" border="0" style="margin: 0 auto; display: inline; margin-left: 20px;">
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: center; padding: 15px 10px;">
+            <label style="font-size: 12px; font-weight: bold;">Siguenos en
+            </label>
+          </td>
+        </tr>
+        <tr colspan="3" style="padding: 15px 10px;">
+          <td colspan="3">
+            <div style="text-align:center">
+              <a href="https://www.facebook.com/liverpoolmexico">
+                <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/926320b87f081a251b02ee5edd055ca836c03066531410b91c6381b54952c5e7.png" alt="logo" height="24" usemap="#Map2" border="0" style="margin: 0 auto; display: inline;">
+              </a>
+              <a href="https://twitter.com/liverpoolmexico">
+                <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/31dd0292a97b75dffedcfdeb45c0217f8a7e5111f319ca21dd1da911a9dcbca6.png" alt="logo" height="24" usemap="#Map2" border="0" style="margin: 0 auto; display: inline;">
+              </a>
+              <a href="https://www.instagram.com/liverpool_mexico/">
+                <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/a1ac47daf7089562f80b687eeac96f7b650165702690896d54d0292735e815c5.png" alt="logo" height="24" usemap="#Map2" border="0" style="margin: 0 auto; display: inline;">
+              </a>
+              <a href="https://www.pinterest.com.mx/liverpoolmexico/">
+                <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/ac6d0d94ae817c2b739499c1a9835a6ec9757e772c3875704461a48089a6ab2f.png" alt="logo" height="24" usemap="#Map2" border="0" style="margin: 0 auto; display: inline;">
+              </a>
+              <a href="https://www.youtube.com/c/liverpoolmexico">
+                <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/3ad067255c264528e6afed6be5a7c80ea097679961dc6746b54b07480802697d.png" alt="logo" height="24" usemap="#Map2" border="0" style="margin: 0 auto; display: inline;">
+              </a>
+            </div>
+          </td>
+        </tr>
+        <tr colspan="3">
+          <td style="padding: 20px 10px;"> 
+          </td>
+        </tr>
+        <tr style="padding: 15px 10px;">
+          <td colspan="3" style="color: white; background: #000000;">
+            <p style="text-align: center; font-size: 12px; padding: 15px 0;">
+              <b>#es parte de mi vida
+              </b>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

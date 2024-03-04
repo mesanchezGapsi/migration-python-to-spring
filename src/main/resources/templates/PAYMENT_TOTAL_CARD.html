@@ -1,0 +1,20 @@
+{% extends '0_base.html' %}
+
+{% block mensaje %}
+    {% include '2_mensajePago.html' %} 
+{% endblock %}
+
+{% block encuestaMedaliaSaludo %}
+    {% include '2_encuestaMedalia_saludo.html' %}
+{% endblock %}
+
+{% block labelTipoTicket %}
+    {% for label in labels["LABEL_TYPE"] %}
+        {% include '2_tab.html' %} 
+    {% endfor %}
+{% endblock %}
+
+
+{% block resumenBolsa %}
+    {% include '2_resumenBolsaPago.html' %}
+{% endblock %}          

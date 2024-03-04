@@ -1,0 +1,66 @@
+{% block factura %}
+<table cellpadding="0" cellspacing="0" name="Contenido Tus Productos" style="background-color:transparent;border-collapse:collapse;width:90%;margin:10px 5%;padding:0;border:1px solid rgb(240,236,236);border-radius:3px;margin-top:0;font-family:Arial, sans-serif;" width="90%" bgcolor="transparent">
+    <tbody>
+        {% if body["ticket"]["codigoFacturacion"] != None %}
+        <tr style="background:white">
+            {% if labels["NAME_HTML"] != 'SALE_MARKETPLACE_TRANSACTION' %}
+            <td style="padding-left:20px;padding-top:15px;width:65%">
+                <label style="font-size:12px">Código de facturación : </label><br>
+                <label style="font-size:12px">{{ body["ticket"]["codigoFacturacion"] }}</label>
+            </td>
+            {% endif %}
+            {% if labels["NAME_HTML"] != 'SALE_MARKETPLACE_TRANSACTION' %}
+                    {% if brand == "LIV" %}
+                        <td style="float:right;padding-top:15px;margin:20px;">
+                            <a href="https://facturacionclientes.liverpool.com.mx/FaeSferaWeb/InicioLivW/inicio.action?_ga=2.1799542.679504977.1620344254-676021344.1602608382" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #e10098;color:#e10098;" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://facturacionclientes.liverpool.com.mx/FaeSferaWeb/InicioLivW/inicio.action?_ga%3D2.1799542.679504977.1620344254-676021344.1602608382&amp;source=gmail&amp;ust=1631231566359000&amp;usg=AFQjCNHeL8Te7pth3coWUDpjvyjmXdt21w">Facturar</a>
+                        </td>
+                    {% endif %}
+                    {% if brand in ['PBA', 'PBK', 'GAP', 'WSO', 'WEL'] %}
+                    <td style="float:right;padding-top:15px;margin:20px;">
+                        <a href="https://facturacionclientes.liverpool.com.mx/FaeSferaWeb/InicioLivW/inicio.action?_ga=2.1799542.679504977.1620344254-676021344.1602608382" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #000;color:#000;" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://facturacionclientes.liverpool.com.mx/FaeSferaWeb/InicioLivW/inicio.action?_ga%3D2.1799542.679504977.1620344254-676021344.1602608382&amp;source=gmail&amp;ust=1631231566359000&amp;usg=AFQjCNHeL8Te7pth3coWUDpjvyjmXdt21w">Facturar</a>
+                    </td>
+                    {% endif %}           
+            {% else %}
+                    {% if brand == "LIV" %}
+                    <td style="float:right;padding-top:15px;margin:20px;">
+                        <a href="https://www.liverpool.com.mx/tienda/users/invoiceRequest" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #e10098;color:#e10098;">Facturar</a>
+                    </td>
+                    {% endif %}
+                    {% if brand in ['PBA', 'PBK', 'GAP', 'WSO', 'WEL'] %}
+                    <td style="float:right;padding-top:15px;margin:20px;">
+                        <a href="https://www.liverpool.com.mx/tienda/users/invoiceRequest" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #000;color:#000;">Facturar</a>
+                    </td>
+                    {% endif %} 
+            
+            {% endif %} 
+        </tr>
+            {% if labels["NAME_HTML"] != 'SALE_MARKETPLACE_TRANSACTION' %}
+            <tr style="background:white">
+                <td colspan=" 2" style="padding:15px; width: 90%; max-width: 400px;">
+                    <img src="https://barcode-mfkkoyaieq-uc.a.run.app/{{body['ticket']['codigoFacturacion']}}" alt="barcode" width="400" height="80" border=" 0" style="margin:0 auto;display:block; width: 90%; max-width: 400px;" class="CToWUd a6T" tabindex="0">
+                </td>
+            </tr>
+            {% endif %} 
+        {% else %}
+        <tr style="background:white">
+            {% if labels["NAME_HTML"] == 'SALE_MARKETPLACE_TRANSACTION' %}
+                    {% if brand == "LIV" %}
+                    <td style="float:right;padding-top:15px; padding-bottom:15px; margin:20px;">
+                        <a href="https://www.liverpool.com.mx/tienda/users/invoiceRequest" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #e10098;color:#e10098;">Facturar</a>
+                    </td>
+                    {% endif %}
+                    {% if brand in ['PBA', 'PBK', 'GAP', 'WSO', 'WEL'] %}
+                    <td style="float:right;padding-top:15px; padding-bottom:15px; margin:20px;">
+                        <a href="https://www.liverpool.com.mx/tienda/users/invoiceRequest" style="text-decoration:none;padding:10px 20px;border-radius:3px;background:white;border:3px solid #000;color:#000;">Facturar</a>
+                    </td>
+                    {% endif %}             
+            {% endif %} 
+        </tr>
+        {% endif %}  
+
+    </tbody>
+</table>
+{% endblock %}
+
+
+ 
