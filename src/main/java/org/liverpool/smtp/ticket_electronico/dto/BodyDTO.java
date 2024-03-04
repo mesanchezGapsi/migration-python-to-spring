@@ -6,10 +6,14 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class BodyDTO {
 
     @NotBlank(message = "El campo 'tipoTicket' no puede estar vacío")
@@ -18,4 +22,8 @@ public class BodyDTO {
     @NotNull(message = "El campo 'cambioCancelacionProducto' no puede ser nulo")
     @Valid
     private CambioCancelacionProductoDTO cambioCancelacionProducto;
+
+    @NotNull(message = "El campo 'productos' no puede ser nulo")
+    @Valid
+    private List<ProductoDTO> productos;
 }

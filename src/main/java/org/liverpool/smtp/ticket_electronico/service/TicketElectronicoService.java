@@ -2,8 +2,10 @@ package org.liverpool.smtp.ticket_electronico.service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.liverpool.smtp.ticket_electronico.configuration.CatalogoTicketsConfig;
 import org.liverpool.smtp.ticket_electronico.dto.BodyDTO;
+import org.liverpool.smtp.ticket_electronico.dto.ProductoDTO;
 import org.liverpool.smtp.ticket_electronico.exception.EnvioEmailException;
 import org.liverpool.smtp.ticket_electronico.exception.HardBounceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,13 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class TicketElectronicoService implements ITicketElectronicoService{
 
@@ -28,6 +33,9 @@ public class TicketElectronicoService implements ITicketElectronicoService{
     @Autowired
     private JavaMailSender mailSender;
 
+    @Autowired
+    private TemplateEngine templateEngine;
+
     @Value("${api.key}")
     private String apiKey;
 
@@ -36,34 +44,63 @@ public class TicketElectronicoService implements ITicketElectronicoService{
     }
 
     @Override
-    public void enviarTicketElectronico(final String to, final BodyDTO body, final String brand) {
-        String tipoTicketKey = String.valueOf(body.getTipoTicket());
-        CatalogoTicketsConfig.TicketInfo labels = catalogoTicketsConfig.getTipos().get(tipoTicketKey);
+    public void enviarTicketElectronico(final String to, BodyDTO body, final String brand) {
+        log.info("info to: " + to);
+        log.debug("debug to: " + to);
+        log.info("BodyDTO: " + body.toString());
+        log.info("brand: " + brand);
+
+        CatalogoTicketsConfig.TicketInfo labels = catalogoTicketsConfig.getTipos()
+                .get(String.valueOf(body.getTipoTicket()));
 
         if (labels == null) {
             throw new EnvioEmailException("Error al tratar de obtener los detos para el template del tipo de ticket");
         }
 
-        if (labels.getNAME_HTML().contains("REFUND")
+        log.info("labels: " + labels);
+
+        if (labels.getNameHtml().contains("REFUND")
                 && ("Cambio mercancía igual precio".equals(body.getCambioCancelacionProducto().getMotivoDevolucion())
                 || "CAMBIAR POR OTRO".equals(body.getCambioCancelacionProducto().getMotivoDevolucion()))) {
             labels = catalogoTicketsConfig.getTipos().get("3");
         }
 
-        // Construye el contenido HTML del ticket aquí usando Thymeleaf o similar
+        // Agregar la URL de las imagenes de los producots
+        this.addUrlImage(body);
 
+        // Construye el contenido HTML del ticket aquí usando Thymeleaf
+        Context context = new Context();
+        context.setVariable("body", body);
+        context.setVariable("labels", labels);
+        context.setVariable("brand", brand);
+
+        String processHtml = templateEngine.process(labels.getNameHtml(), context);
+
+        // Se envia el email por SMTP
+        //enviarEmail(processHtml, body.getEmail())
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
+            helper.setSubject("Consulta tu ticket digital");
             helper.setFrom("Liverpool <ventasd@liverpool.com.mx>'");
             helper.setTo(to);
-            helper.setSubject("Consulta tu ticket digital");
-            helper.setText("htmlContent", true);
+            helper.setText(processHtml,true);
 
             mailSender.send(message);
         } catch (MessagingException e) {
             throw new EnvioEmailException("Error al enviar el correo electrónico", e);
+        }
+    }
+
+    private void addUrlImage(BodyDTO body) {
+        log.info("Agregar las url de las imagenes de los productos");
+        for (ProductoDTO producto : body.getProductos()) {
+            log.info(producto.getImagen());
+            if (producto.getImagen() == null && producto.getSeccion() != null && producto.getSku() != null) {
+                String url = "https://ss" + producto.getSeccion().substring(1) + ".liverpool.com.mx/xl/" + producto.getSku() + ".jpg";
+                producto.setImagen(url);
+            }
         }
     }
 

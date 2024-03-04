@@ -1,7 +1,6 @@
 package org.liverpool.smtp.ticket_electronico.configuration;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -19,12 +18,12 @@ public class CatalogoTicketsConfig {
     @Getter
     @ToString
     public static class TicketInfo {
-        private String NAME_HTML;
-        private List<String> LABEL_TYPE;
-        private List<String> LABEL_PRODUCT;
-        private List<String> LABEL_PRODUCT_TITLE;
-        private String LABEL_FORMA_PAGO_TITLE;
-        private List<String> LABEL_RESUMEN_TITLE;
-        private Map<String, List<String>> WARNINGS;
+        private String nameHtml;
+        private List<String> labelType;
+        private List<String> labelProduct;
+        private List<String> labelProductTitle;
+        private String labelFormaPagoTitle;
+        private List<String> labelResumenTitle;
+        private Map<String, List<String>> warnings;
     }
 }
