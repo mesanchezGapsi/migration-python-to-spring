@@ -1,27 +1,21 @@
-{% block mensaje %}
 <table cellpadding="0" cellspacing="0" name="Cambio" style="background-color: transparent; border-collapse: collapse; font-family: 'Roboto', sans-serif; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px; margin-top: 0;"
 width="90%" bgcolor="transparent">
     <tbody>
         <tr style="background: white;">
             <td style="text-align: center; padding: 5px 5px;">
-                {% if brand == "LIV" %}
-                    <img src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/add_liv.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
-                {% endif %}
-                {% if brand == "PBA" %}
-                    <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/3450e8d72cb8eede117818884f3057b589aff0c907ac4ec78bfa474af8f4cd1e.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
-                {% endif %}
-                {% if brand == "WSO" %}
-                    <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/4f90a524d3401d026e2d7fdb61b14ec016a8bdf264e417a77e4874b93ae25228.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
-                {% endif %}
-                {% if brand == "WEL" %}
-                    <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/4f90a524d3401d026e2d7fdb61b14ec016a8bdf264e417a77e4874b93ae25228.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
-                {% endif %}
-                {% if brand == "PBK" %}
-                <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/1c0d940670338617e5878295e3a78e9bffbdadc2473955e4ccdf260f563405ee.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
-                {% endif %}
-                {% if brand == "GAP" %}
-                    <img src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/0cc416c6de32d17d73428771c5f3ea24e8ba664e4609ae9e4de45f2c75f646b8.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;"> 
-                {% endif %}
+
+                <img th:if="${brand == 'LIV'}" src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/add_liv.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
+
+                <img th:if="${brand == 'PBA'}" src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/3450e8d72cb8eede117818884f3057b589aff0c907ac4ec78bfa474af8f4cd1e.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
+
+                <img th:if="${brand == 'WSO'}" src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/4f90a524d3401d026e2d7fdb61b14ec016a8bdf264e417a77e4874b93ae25228.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
+
+                <img th:if="${brand == 'WEL'}" src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/4f90a524d3401d026e2d7fdb61b14ec016a8bdf264e417a77e4874b93ae25228.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
+
+                <img th:if="${brand == 'PBK'}" src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/1c0d940670338617e5878295e3a78e9bffbdadc2473955e4ccdf260f563405ee.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
+
+                <img th:if="${brand == 'GAP'}" src="http://liverpool-mkt-prod5-res.adobe-campaign.com/res/liverpool_mkt_prod5/0cc416c6de32d17d73428771c5f3ea24e8ba664e4609ae9e4de45f2c75f646b8.png" alt="check"  height="24" usemap="#Map2" border="0" style="margin: 0 auto; padding-left: 10px; padding-right: 10px; display: inline;">
+
                 <label style="font-size: 18px; font-weight: bold;">Devolución Exitosa</label>
             </td>
         </tr>
@@ -32,4 +26,3 @@ width="90%" bgcolor="transparent">
         </tr>
     </tbody>
 </table>
-{% endblock %}

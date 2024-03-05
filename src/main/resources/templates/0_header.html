@@ -1,44 +1,34 @@
-{% block header %}
 <table cellpadding="0" cellspacing="0" name="Header" style="background-color:transparent;width:100%;border-collapse:collapse;font-family:'Roboto',sans-serif;max-width: 650px;" width="100%" bgcolor="transparent">
     <tbody>
-        <tr>
-            {% if brand == "LIV" %}
-                <td style="width:100%;height: 80px;max-width:630px;background-color:#e10098;" height="80">
-                    <img src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/liv_w.png" alt="logo" width="200" height="auto" usemap="#m_-8738507492739174140_Map2" border="0" style="margin:0 auto;display:block;text-align:center" class="CToWUd">                
-                </td>
-            {% endif %}
-            {% if brand == "PBA" %}
-                <td style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
-                    <img src="https://assets.potterybarn.com.mx/assets/multisites/potterybarn/images/logo.png" alt="logo" width="360" height="25" usemap="#Map2" border="0" style="margin: 0 auto; display: block; text-align: center;">
-                </td>
-            {% endif %}
-            {% if brand == "WSO" %}
-                <td style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
-                <img src="https://assets.williams-sonoma.com.mx/assets/multisites/images/logo.png" alt="logo"
-                    width="150" height="68" usemap="#Map2" border="0"
-                    style="margin: 0 auto; display: block; text-align: center;"></td>
-            {% endif %}
-            {% if brand == "WEL" %}
-                <td style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
-                <img src="https://assets.westelm.com.mx/assets/multisites/westelm/images/logo_ws.png" alt="logo"
-                    width="210" height="38" usemap="#Map2" border="0"
-                    style="margin: 0 auto; display: block; text-align: center;"></td>
-            {% endif %}
-            {% if brand == "PBK" %}
-                <td style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
-                <img src="https://assets.potterybarnkids.com.mx/assets/multisites/pbkids/images/logo-pbk.png" alt="logo"
-                    width="290" height="42" usemap="#Map2" border="0"
-                    style="margin: 0 auto; display: block; text-align: center;"></td>
-            {% endif %}
-            {% if brand == "GAP" %}
-                <td style="width: 100%; height: 133px; max-width: 630px; background-color: #122344 !important;"
-                height="133"><img
+    <tr>
+        <td th:if="${brand == 'LIV'}" style="width:100%;height: 80px;max-width:630px;background-color:#e10098;" height="80">
+            <img src="https://assetspwa.liverpool.com.mx/assets/digital/mailings/img/liv_w.png" alt="logo" width="200" height="auto" usemap="#m_-8738507492739174140_Map2" border="0" style="margin:0 auto;display:block;text-align:center" class="CToWUd">
+        </td>
+
+        <td th:if="${brand == 'PBA'}" style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
+            <img src="https://assets.potterybarn.com.mx/assets/multisites/potterybarn/images/logo.png" alt="logo" width="360" height="25" usemap="#Map2" border="0" style="margin: 0 auto; display: block; text-align: center;">
+        </td>
+
+        <td th:if="${brand == 'WSO'}" style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
+            <img src="https://assets.williams-sonoma.com.mx/assets/multisites/images/logo.png" alt="logo"
+                 width="150" height="68" usemap="#Map2" border="0"
+                 style="margin: 0 auto; display: block; text-align: center;"></td>
+
+        <td th:if="${brand == 'WEL'}" style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
+            <img src="https://assets.westelm.com.mx/assets/multisites/westelm/images/logo_ws.png" alt="logo"
+                 width="210" height="38" usemap="#Map2" border="0"
+                 style="margin: 0 auto; display: block; text-align: center;"></td>
+
+        <td th:if="${brand == 'PBK'}" style="width: 100%; height: 133px; max-width: 630px; background-color: #FFF !important;" height="133">
+            <img src="https://assets.potterybarnkids.com.mx/assets/multisites/pbkids/images/logo-pbk.png" alt="logo"
+                 width="290" height="42" usemap="#Map2" border="0"
+                 style="margin: 0 auto; display: block; text-align: center;"></td>
+
+        <td th:if="${brand == 'GAP'}" style="width: 100%; height: 133px; max-width: 630px; background-color: #122344 !important;"
+            height="133"><img
                 src="https://assetspwa.gap.com.mx/assets/front/images/atomo-icono-gap-regular-desktop.svg"
                 alt="logo" width="150" height="58" usemap="#Map2" border="0"
                 style="margin: 0 auto; display: block; text-align: center;"></td>
-            {% endif %}
-               
-        </tr>
+    </tr>
     </tbody>
 </table>
-{% endblock %}

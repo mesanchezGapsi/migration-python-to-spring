@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 public class CambioCancelacionProductoDTO {
     @NotBlank(message = "El motivo de devolución no puede estar vacío")

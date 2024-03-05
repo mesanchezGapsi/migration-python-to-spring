@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class EmailDTO {
 
     @NotBlank(message = "El campo 'to' no puede estar vacío")
     @Email(message = "Debe ser una dirección de correo electrónico válida")
     private String to;
+
+    @NotBlank(message = "El campo 'messageCode' no puede estar vacío")
+    private String messageCode;
 
     @NotNull(message = "El campo 'body' no puede ser nulo")
     @Valid

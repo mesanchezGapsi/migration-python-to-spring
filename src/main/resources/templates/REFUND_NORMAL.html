@@ -1,35 +1,27 @@
-{% extends '0_base.html' %}
-
-{% block mensaje %}
-    {% include '2_mensajeDevolucion.html' %} 
-{% endblock %}
-
-{% block encuestaMedaliaSaludo %}
-    {% include '2_encuestaMedalia_saludo.html' %}
-{% endblock %}
-
-{% block labelTipoTicket %}
-    {% for label in labels["LABEL_TYPE"] %}
-        {% include '2_tab.html' %} 
-    {% endfor %}
-{% endblock %}
-
-<!--{% block warnings %}
-    {% for warnings in labels["WARNINGS"]["val1"] %}
-        {% include '3_warning.html' %} 
-    {% endfor %} 
-{% endblock %}-->
-
-{% block labelTipoProducto %} 
-    {% for label in labels["LABEL_PRODUCT"] %}
-        {% include '2_tab.html' %} 
-    {% endfor %}
-{% endblock %}
-
-{% block producto %}
-    {% include '2_productosDevolucion.html' %} 
-{% endblock %}
-
-{% block resumenBolsa %}
-    {% include '2_resumenBolsa.html' %}
-{% endblock %}   
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div style="background:transparent; width:100%">
+    <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">Todos tus tickets de compra en un solo lugar.</span>
+    <table cellpadding="0" cellspacing="0" style="background-color:#f7f7f7;width:100%;border-collapse:collapse;max-width:650px;margin:auto">
+        <tr>
+            <td>
+                <div th:insert="0_header :: headerFragment"></div>
+                <div th:replace="~{2_mensajeDevolucion :: mensaje}"></div>
+                <div th:replace="~{2_encuestaMedalia_saludo :: encuestaMedaliaSaludo}"></div>
+                <div th:each="label : ${labels.labelType}" th:replace="~{2_tab :: labelTipoTicket}"></div>
+                <div th:insert="2_infoCompra :: 2_infoCompraFragment"></div>
+                <div th:insert="3_warning :: 3_warningFragment"></div>
+                <div th:each="label : ${labels.labelProduct}" th:replace="~{2_tab :: labelTipoProducto}"></div>
+                <div th:replace="~{2_productosDevolucion :: producto}"></div>
+                <div th:replace="~{1_facturaProducto :: factura}"></div>
+                <div th:replace="~{2_resumenBolsa :: resumenBolsa}"></div>
+                <div th:insert="1_formaPago :: 1_formaPagoFragment"></div>
+                <div th:insert="1_despedida :: 1_despedidaFragment"></div>
+                <div th:insert="0_footer :: 0_footerFragment"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
