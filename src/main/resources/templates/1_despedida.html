@@ -20,18 +20,17 @@
         </tr>
         <tr style="background: white;">
             <td style="text-align: center; padding-left: 5%; padding-right: 5%;">
-                <label style="font-size: 14px; font-weight: bold;">{{ body["tienda"]["nombreTienda"] }}</label>
                 <label th:text="${body.tienda.nombreTienda}" style="font-size: 14px; font-weight: bold;"></label>
             </td>
         </tr>
         <tr style="background: white;">
             <td style="text-align: center; padding-left: 5%; padding-right: 5%;">
-                <label style="font-size: 14px; color: gray;">{{ body["tienda"]["direccionTienda"] }}</label>
+                <label th:text="${body.tienda.direccionTienda}" style="font-size: 14px; color: gray;"></label>
             </td>
         </tr>
         <tr style="background: white;">
             <td style="text-align: center; padding-bottom: 15px; padding-left: 5%; padding-right: 5%;">
-                <label style="font-size: 14px; color: gray;">Tel. {{ body["tienda"]["telefonoTienda"] }}</label>
+                <label th:text="'Tel. ' + ${body.tienda.telefonoTienda}" style="font-size: 14px; color: gray;"></label>
             </td>
         </tr>
     </tbody>

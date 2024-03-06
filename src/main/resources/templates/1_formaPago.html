@@ -1,34 +1,40 @@
-{% block formaPago %}
 <table cellpadding="0" cellspacing="0" name="Forma de pago" style="background-color: transparent; border-collapse: collapse; width: 90%; margin: 10px 5%; padding: 0; border: 1px solid rgb(240, 236, 236); border-radius: 3px;" width="90%" bgcolor="transparent">
     <tbody>
         <tr>
             <td colspan="2" style="font-size: 18px; padding: 10px 5%; background: white; border-bottom: 1px solid lightgray;"><b>{% if labels["LABEL_FORMA_PAGO_TITLE"] == None %} Forma de Pago  {% else %} {{ labels["LABEL_FORMA_PAGO_TITLE"] }}  {% endif %} </b>
             </td>
         </tr>
-        {% for tarjeta in body["pagoTarjeta"] %}     
-                <tr>
-                    <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray;
-                        background: white;">
-                        <label style="font-size: 14px;">Pago con Tarjeta</label>
-                        <br>
-                        <label style="font-size: 14px;">
-                        </label>
-                    </td>
-                </tr>
-                
-                <tr>                    
-                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">{% if tarjeta["tipoProducto"] != None %} {{ tarjeta["tipoProducto"] }} {% endif %}</td>                
+        <th:block th:each="tarjeta : ${body.pagoTarjeta}">
+            <tr>
+                <td colspan="2" style="font-size: 14px; font-weight: bold; padding-left: 5%; padding-top: 15px; border-top: 1px solid lightgray; background: white;">
+                    <label style="font-size: 14px;">Pago con Tarjeta</label>
+                    <br>
+                    <label style="font-size: 14px;">
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">
+                    {% if tarjeta["tipoProducto"] != None %} {{ tarjeta["tipoProducto"] }} {% endif %}
+                </td>
+
                 {% if tarjeta["numeroCuenta"] != None %}
-                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">*{{ tarjeta["numeroCuenta"] }}</td>
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">
+                        *{{ tarjeta["numeroCuenta"] }}
+                    </td>
                 {% endif %}
-                </tr>
-               
-                {% if tarjeta["nombreCliente"] != None %}
-                <tr>
-                    <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Tarjeta habiente: </td>
-                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["nombreCliente"] }}</td>
-                </tr>
-                {% endif %}
+            </tr>
+
+            {% if tarjeta["nombreCliente"] != None %}
+            <tr>
+                <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Tarjeta habiente: </td>
+                <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;">{{ tarjeta["nombreCliente"] }}</td>
+            </tr>
+            {% endif %}
+        </th:block>
+
+
                 {% if tarjeta["nombreBanco"] != None %}
                 <tr>
                     <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">Banco: </td>
@@ -84,7 +90,7 @@
                 </tr>
                 <tr>
                     <td style="font-size: 14px; padding: 10px 5%; color: darkgray; background: white;">{{ tarjeta["leyendaPuntos"] }}: </td>
-                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;"> <!-- 00?0?0?0--></td> 
+                    <td style="text-align: right; font-size: 14px; font-weight: bold; padding: 10px 5%; background: white;"> <!-- 00?0?0?0--></td>
                 </tr>
                 {% if tarjeta["puntosSaldoAnterior"] != None %}
                 <tr>
@@ -278,4 +284,3 @@
         
     </tbody>
 </table>
-{% endblock %}

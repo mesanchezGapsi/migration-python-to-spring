@@ -7,18 +7,7 @@
         <tr>
             <td>
                 <div th:insert="0_header :: headerFragment"></div>
-                <div th:replace="~{2_mensajeDevolucion :: mensaje}"></div>
-                <div th:replace="~{2_encuestaMedalia_saludo :: encuestaMedaliaSaludo}"></div>
-                <div th:each="label : ${labels.labelType}" th:replace="~{2_tab :: labelTipoTicket}"></div>
-                <div th:insert="2_infoCompra :: 2_infoCompraFragment"></div>
-                <div th:insert="3_warning :: 3_warningFragment"></div>
-                <div th:each="label : ${labels.labelProduct}" th:replace="~{2_tab :: labelTipoProducto}"></div>
-                <div th:replace="~{2_productosDevolucion :: producto}"></div>
-                <div th:replace="~{1_facturaProducto :: factura}"></div>
-                <div th:replace="~{2_resumenBolsa :: resumenBolsa}"></div>
-                <div th:insert="1_formaPago :: 1_formaPagoFragment"></div>
-                <div th:insert="1_despedida :: 1_despedidaFragment"></div>
-                <div th:insert="0_footer :: 0_footerFragment"></div>
+
             </td>
         </tr>
     </table>
