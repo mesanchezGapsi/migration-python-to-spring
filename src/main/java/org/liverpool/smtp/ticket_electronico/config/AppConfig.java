@@ -1,4 +1,4 @@
-package org.liverpool.smtp.ticket_electronico.configuration;
+package org.liverpool.smtp.ticket_electronico.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

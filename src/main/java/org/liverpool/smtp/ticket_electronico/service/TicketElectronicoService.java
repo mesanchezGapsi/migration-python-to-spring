@@ -3,7 +3,7 @@ package org.liverpool.smtp.ticket_electronico.service;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
-import org.liverpool.smtp.ticket_electronico.configuration.CatalogoTicketsConfig;
+import org.liverpool.smtp.ticket_electronico.config.CatalogoTicketsConfig;
 import org.liverpool.smtp.ticket_electronico.dto.BodyDTO;
 import org.liverpool.smtp.ticket_electronico.dto.ProductoDTO;
 import org.liverpool.smtp.ticket_electronico.exception.EnvioEmailException;
@@ -45,12 +45,14 @@ public class TicketElectronicoService implements ITicketElectronicoService{
 
     @Override
     public void enviarTicketElectronico(final String to, BodyDTO body, final String brand) {
-        log.info("info to: " + to);
-        log.debug("debug to: " + to);
-        log.info("BodyDTO: " + body.toString());
-        log.info("brand: " + brand);
+        log.info("to: " + to);
+        log.info("body: " + body);
 
-        CatalogoTicketsConfig.TicketInfo labels = catalogoTicketsConfig.getTipos()
+        if (catalogoTicketsConfig.getTickets() == null) {
+            throw new EnvioEmailException("Error al tratar de obtener el catalogo de los tipos de ticket");
+        }
+
+        CatalogoTicketsConfig.TicketInfo labels = catalogoTicketsConfig.getTickets()
                 .get(String.valueOf(body.getTipoTicket()));
 
         if (labels == null) {
@@ -62,7 +64,7 @@ public class TicketElectronicoService implements ITicketElectronicoService{
         if (labels.getNameHtml().contains("REFUND")
                 && ("Cambio mercancía igual precio".equals(body.getCambioCancelacionProducto().getMotivoDevolucion())
                 || "CAMBIAR POR OTRO".equals(body.getCambioCancelacionProducto().getMotivoDevolucion()))) {
-            labels = catalogoTicketsConfig.getTipos().get("3");
+            labels = catalogoTicketsConfig.getTickets().get("3");
         }
 
         // Agregar la URL de las imagenes de los producots

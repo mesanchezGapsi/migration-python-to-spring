@@ -28,7 +28,7 @@ public class BodyDTO {
     private String montoNoAhorrado;
 
     @Valid
-    private PagoMonederoDTO pagoMonedero;
+    private List<PagoMonederoDTO> pagoMonedero;
 
     @Valid
     private MesaRegalosDTO mesaRegalos;
@@ -64,7 +64,7 @@ public class BodyDTO {
     private List<String> abonoTarjeta; //?
 
     @Valid
-    private List<TiendaDTO> tienda;
+    private TiendaDTO tienda;
 
     private String cambio;
 

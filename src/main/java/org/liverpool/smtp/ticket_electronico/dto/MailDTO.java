@@ -6,11 +6,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-public class EmailDTO {
+public class MailDTO {
 
     @NotBlank(message = "El campo 'to' no puede estar vacío")
     @Email(message = "Debe ser una dirección de correo electrónico válida")
