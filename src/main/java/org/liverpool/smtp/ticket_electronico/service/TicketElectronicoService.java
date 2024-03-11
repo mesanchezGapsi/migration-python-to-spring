@@ -98,7 +98,7 @@ public class TicketElectronicoService implements ITicketElectronicoService{
     private void addUrlImage(BodyDTO body) {
         log.info("Agregar las url de las imagenes de los productos");
         for (ProductoDTO producto : body.getProductos()) {
-            log.info(producto.getImagen());
+            log.info("producto imagen: " + producto.getImagen());
             if (producto.getImagen() == null && producto.getSeccion() != null && producto.getSku() != null) {
                 String url = "https://ss" + producto.getSeccion().substring(1) + ".liverpool.com.mx/xl/" + producto.getSku() + ".jpg";
                 producto.setImagen(url);
